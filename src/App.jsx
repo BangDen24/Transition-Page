@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
+import a from "./assets/1_1.jpg";
+import b from "./assets/1_2.jpg";
+import c from "./assets/1_3.jpg";
+import d from "./assets/1_4.jpg";
 import e from "./assets/1.jpg";
 import gsap from "gsap";
 import { ScrollSmoother } from "gsap/all";
@@ -9,7 +13,14 @@ gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
 function App() {
 
-  React.useEffect(() => {
+  useEffect(() => {
+    const preview = document.querySelectorAll(".preview");
+    const content = document.querySelectorAll(".content");
+
+    
+  })
+
+  useEffect(() => {
     ScrollSmoother.create({
       wrapper: ".smooth-wrapper",
       content: ".smooth-content",
@@ -18,7 +29,7 @@ function App() {
     });
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     gsap.to(".preview__img-inner", {
       ease: "none",
       scaleY: 1.8,
@@ -32,7 +43,7 @@ function App() {
     });
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     gsap.to(".preview__title", {
       ease: "none",
       y: -200,
@@ -155,6 +166,160 @@ function App() {
                   A volcanic rock of intermediate composition, between
                   silica-poor basalt and silica-rich rhyolite.
                 </p>
+              </div>
+            </div>
+          </section>
+          <section className="content-wrap">
+            <div className="content">
+              <div className="content__group">
+                <div className="content__title">
+                  <span className="oh">
+                    <span className="oh__inner">Andesite</span>
+                  </span>
+                  <span className="oh">
+                    <span className="oh__inner">aphanitic</span>
+                  </span>
+                </div>
+                <div className="content__meta oh">
+                  <span className="oh__inner">By James Maurice Rojo</span>
+                </div>
+                <div className="content__text">
+                  Andesite (/ˈændəzaɪt/) is a volcanic rock of intermediate
+                  composition. In a general sense, it is the intermediate type
+                  between silica-poor basalt and silica-rich rhyolite.
+                </div>
+              </div>
+              <div className="content__thumbs">
+                <div
+                  className="content__thumbs-item"
+                  style={{ backgroundImage: `url(${a})` }}
+                ></div>
+                <div
+                  className="content__thumbs-item"
+                  style={{ backgroundImage: `url(${b})` }}
+                ></div>
+                <div
+                  className="content__thumbs-item"
+                  style={{ backgroundImage: `url(${c})` }}
+                ></div>
+                <div
+                  className="content__thumbs-item"
+                  style={{ backgroundImage: `url(${d})` }}
+                ></div>
+              </div>
+            </div>
+            <div className="content">
+              <div className="content__group">
+                <div className="content__title">
+                  <span className="oh">
+                    <span className="oh__inner">Andesite</span>
+                  </span>
+                  <span className="oh">
+                    <span className="oh__inner">aphanitic</span>
+                  </span>
+                </div>
+                <div className="content__meta oh">
+                  <span className="oh__inner">By James Maurice Rojo</span>
+                </div>
+                <div className="content__text">
+                  Andesite (/ˈændəzaɪt/) is a volcanic rock of intermediate
+                  composition. In a general sense, it is the intermediate type
+                  between silica-poor basalt and silica-rich rhyolite.
+                </div>
+              </div>
+              <div className="content__thumbs">
+                <div
+                  className="content__thumbs-item"
+                  style={{ backgroundImage: `url(${a})` }}
+                ></div>
+                <div
+                  className="content__thumbs-item"
+                  style={{ backgroundImage: `url(${b})` }}
+                ></div>
+                <div
+                  className="content__thumbs-item"
+                  style={{ backgroundImage: `url(${c})` }}
+                ></div>
+                <div
+                  className="content__thumbs-item"
+                  style={{ backgroundImage: `url(${d})` }}
+                ></div>
+              </div>
+            </div>
+            <div className="content">
+              <div className="content__group">
+                <div className="content__title">
+                  <span className="oh">
+                    <span className="oh__inner">Andesite</span>
+                  </span>
+                  <span className="oh">
+                    <span className="oh__inner">aphanitic</span>
+                  </span>
+                </div>
+                <div className="content__meta oh">
+                  <span className="oh__inner">By James Maurice Rojo</span>
+                </div>
+                <div className="content__text">
+                  Andesite (/ˈændəzaɪt/) is a volcanic rock of intermediate
+                  composition. In a general sense, it is the intermediate type
+                  between silica-poor basalt and silica-rich rhyolite.
+                </div>
+              </div>
+              <div className="content__thumbs">
+                <div
+                  className="content__thumbs-item"
+                  style={{ backgroundImage: `url(${a})` }}
+                ></div>
+                <div
+                  className="content__thumbs-item"
+                  style={{ backgroundImage: `url(${b})` }}
+                ></div>
+                <div
+                  className="content__thumbs-item"
+                  style={{ backgroundImage: `url(${c})` }}
+                ></div>
+                <div
+                  className="content__thumbs-item"
+                  style={{ backgroundImage: `url(${d})` }}
+                ></div>
+              </div>
+            </div>
+            <div className="content">
+              <div className="content__group">
+                <div className="content__title">
+                  <span className="oh">
+                    <span className="oh__inner">Andesite</span>
+                  </span>
+                  <span className="oh">
+                    <span className="oh__inner">aphanitic</span>
+                  </span>
+                </div>
+                <div className="content__meta oh">
+                  <span className="oh__inner">By James Maurice Rojo</span>
+                </div>
+                <div className="content__text">
+                  Andesite (/ˈændəzaɪt/) is a volcanic rock of intermediate
+                  composition. In a general sense, it is the intermediate type
+                  between silica-poor basalt and silica-rich rhyolite.
+                </div>
+              </div>
+              <div className="content__thumbs">
+                <div
+                  className="content__thumbs-item"
+                  style={{ backgroundImage: `url(${a})` }}
+                ></div>
+                <div
+                  className="content__thumbs-item"
+                  style={{ backgroundImage: `url(${b})` }}
+                ></div>
+                <div
+                  className="content__thumbs-item"
+                  style={{ backgroundImage: `url(${c})` }}
+                ></div>
+                <div
+                  className="content__thumbs-item"
+                  style={{ backgroundImage: `url(${d})` }}
+                ></div>
               </div>
             </div>
           </section>
