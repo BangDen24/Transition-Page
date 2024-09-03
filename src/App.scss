@@ -40,7 +40,10 @@ body {
     position: relative;
     overflow: hidden
 }
-
+.oh1 {
+    position: relative;
+    overflow: hidden
+}
 .oh__inner {
     will-change: transform;
     display: inline-block
@@ -226,7 +229,8 @@ main {
     height: 100%;
     background-position: center;
     // background-repeat: no-repeat;
-    background-size: 150%
+    background-size: 150%;
+    overflow: hidden
 }
 
 .content__meta {
@@ -235,12 +239,14 @@ main {
 }
 
 .preview__title {
+    // gap: 1rem;
     text-align: center;
     pointer-events: none;
     grid-area: 1/1/-1/-1;
     place-self: center;
     position: relative;
-    transform: translateY(50%)
+    transform: translateY(50%);
+    overflow: hidden;
 }
 
 .preview__title-main {
@@ -273,7 +279,7 @@ main {
 
 .content-wrap {
     height: 100vh;
-    pointer-events: none;
+    // pointer-events: none;
     grid-area: page;
     grid-template-rows: auto 1fr;
     grid-template-areas: "back back""content content";
@@ -287,13 +293,13 @@ main {
 
 .action {
     visibility: hidden;
-    pointer-events: none;
+    // pointer-events: auto;
     opacity: 0
 }
 
 .content-open .action {
     visibility: visible;
-    pointer-events: auto
+    // pointer-events: auto
 }
 
 .action svg {
@@ -327,17 +333,21 @@ main {
 .content--current {
     pointer-events: auto;
     opacity: 1;
-    position: relative
+    position: relative;
+    overflow: hidden;
+    height: 100%;
 }
 
 .content__group {
-    grid-area: text
+    grid-area: text;
+    overflow: hidden;
 }
 
 .content__title {
     font-family: scotch-display,sans-serif;
     font-size: max(3rem,min(6.5vw,5.5rem));
-    font-weight: 400
+    font-weight: 400;
+    z-index: 100;
 }
 
 .content__title span {

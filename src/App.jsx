@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useGSAP } from "@gsap/react";
 import "./App.scss";
 import a from "./assets/1_1.jpg";
 import b from "./assets/1_2.jpg";
@@ -6,55 +7,142 @@ import c from "./assets/1_3.jpg";
 import d from "./assets/1_4.jpg";
 import e from "./assets/1.jpg";
 import gsap from "gsap";
-import { ScrollSmoother } from "gsap/all";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollSmoother, ScrollTrigger, SplitText } from "gsap/all";
 
-gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
+gsap.registerPlugin(ScrollSmoother, ScrollTrigger, SplitText);
 
 function App() {
-
   useEffect(() => {
-    const preview = document.querySelectorAll(".preview");
-    const content = document.querySelectorAll(".content");
+    const previews = document.querySelectorAll(".preview");
+    const contents = document.querySelectorAll(".content");
+    const main = document.querySelector(".smooth-content");
+    const backbutton = document.querySelector(".action");
 
-    
-  })
+    const split = new SplitText(".preview__title-main", { type: "words" });
+    const splittitle = new SplitText(".content__group", { type: "words" });
 
-  useEffect(() => {
+    previews.forEach((preview, index) => {
+      preview.addEventListener("click", () => {
+        contents.forEach(() => {
+          document.body.style.overflow = "hidden";
+          document.querySelector(".preview-wrap").style.zIndex = 0;
+          contents[index].classList.add("content--current");
+          main.classList.add(".content-open");
+
+          const tl = gsap.timeline();
+          tl.to(previews[index], {
+            scale: 0.6,
+            transformOrigin: "left top",
+            duration: 0.8,
+            pointerEvents: "none",
+            onStart: () => {
+              gsap.set(previews[index], {
+                y: 100,
+              });
+            },
+          })
+          .fromTo(
+            ".content__thumbs-item",{
+              scale: 0.4,
+              transformOrigin: "left bottom"
+            },
+            {
+              scale: 1,
+              duration: 0.8
+            },"-=0.8"
+          )
+          .to(
+            backbutton,{
+              opacity: 1,
+              visibility: "visible",
+              pointerEvents: "auto"
+            },"<"
+          )
+            .to(
+              ".preview__desc",
+              {
+                opacity: 0
+              },"-+1.8"
+            )
+            .to(
+              split.words,
+              {
+                y: -150,
+                duration: 1.5,
+              },"<"
+            )
+            .fromTo(
+              splittitle.words,
+              {
+
+                // opacity: 0,
+                y: 150,
+                duration: 1.5,
+              },
+              {
+                // opacity: 1,
+                y: 0,
+              },"<"
+            )
+            .to(
+              previews[index + 1],
+              {
+                y: 500,
+                duration: 1,
+                opacity: 0
+              },"<0.5"
+            );
+              
+            backbutton.addEventListener("click", () => {
+              contents[index].classList.remove("content--current");
+              main.classList.remove(".content-open");
+              document.body.style.overflow = "visible";
+              document.querySelector(".preview-wrap").style.zIndex = 100;
+
+              tl.reverse();
+            })
+        });
+      });
+    });
+
+  }, []);
+
+  useGSAP(() => {
     ScrollSmoother.create({
       wrapper: ".smooth-wrapper",
       content: ".smooth-content",
       smooth: 2,
       effects: true,
     });
-  }, []);
-
-  useEffect(() => {
     gsap.to(".preview__img-inner", {
       ease: "none",
       scaleY: 1.8,
       scrollTrigger: {
-        trigger: ".preview__image--inner",
+        trigger: ".smooth-wrapper",
         start: "top top",
         end: "bottom bottom",
         scrub: true,
-        markers: true,
+        // markers: true,
       },
     });
-  }, []);
-
-  useEffect(() => {
-    gsap.to(".preview__title", {
-      ease: "none",
-      y: -200,
-      scrollTrigger: {
-        trigger: ".preview__image--inner",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: true,
-        markers: true,
+    gsap.fromTo(
+      ".preview__title",
+      {
+        y: +100,
       },
-    });
+      {
+        ease: "none",
+        y: -50,
+        scrollTrigger: {
+          trigger: ".preview__img-inner",
+          start: "top top",
+          endTrigger: ".preview-wrap",
+          end: "bottom bottom",
+          scrub: true,
+          // markers: true,
+        },
+      }
+    );
   }, []);
 
   return (
@@ -119,8 +207,8 @@ function App() {
               </div>
               <div className="preview__title">
                 <h2 className="preview__title-main">
-                  <span className="oh">Andesite</span>
-                  <span className="oh">aphanitic</span>
+                  <span className="oh1">Andesite</span>
+                  <span className="oh1">aphanitic</span>
                 </h2>
                 <p className="preview__desc">
                   A volcanic rock of intermediate composition, between
@@ -322,6 +410,12 @@ function App() {
                 ></div>
               </div>
             </div>
+            <button className="unbutton action action--back">
+              <svg width="25px" height="25px" viewBox="0 0 25 25">
+                <path d="M24 12.001H2.914l5.294-5.295-.707-.707L1 12.501l6.5 6.5.707-.707-5.293-5.293H24v-1z" />
+              </svg>
+              <span>Go back</span>
+            </button>
           </section>
         </main>
       </div>
